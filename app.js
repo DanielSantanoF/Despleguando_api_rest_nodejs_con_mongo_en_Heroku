@@ -55,8 +55,6 @@ passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
 
 const app = express()
 
-//app.set("poert", process.env.PORT || 3000);
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -68,5 +66,7 @@ app.use('/api/', meteorologic_data_routes);
 
 app.use(authMiddleware.errorHandler);
 app.use(authMiddleware.notFoundHandler);
+
+app.listen(process.env.PORT)
 
 module.exports = app
